@@ -3,8 +3,8 @@ import turtle
 import random
 from turtle import forward,right,exitonclick, left, pendown, penup, speed, hideturtle, backward
 from math import sqrt 
-a = int(input("vyber pocet radku")) # delka radku
-b = int(input("vyber pocet sloupcu")) # vyska pole
+a = int(input("vyber pocet radku ")) # delka radku
+b = int(input("vyber pocet sloupcu ")) # vyska pole
 
 strana = 50 # strana sestiuhelniku
 screen = turtle.Screen()
@@ -17,45 +17,61 @@ speed(0)
 
 
 # funkce pro kresleni pole 
-def climbHexRight(): # brusleni po stranach sestiuhelniku do prava 
+def climbHexRight(): #  
     forward(strana)
     right(60)
     forward(strana)
     right(60)
+'''
+brusleni po stranach sestiuhelniku do prava
+'''
 
-
-def preRowPosition(): # vrati zelvu na zacatek sloupce aby se stejna funkce znovu exekuovat 
+def preRowPosition(): 
     penup()
     for i in range (2):
         forward (strana)
         right(60)
     right(120)
     pendown()
+'''
+vrati zelvu na zacatek sloupce aby se stejna funkce znovu exekuovat
+'''
 
-def backToStart(): # zelva odejde zpet na start kde zacal radek 
+def backToStart():
     left(240)
     for y in range(a):
         forward(strana)
         left(60)
         forward(strana)
         right(60)
+'''
+ zelva odejde zpet na start kde zacal radek 
+'''
 
-def drawHex(): # nakresli sestiuhelnik
+def drawHex(): 
     for i in range (6):
         forward (strana)
         left(60)
     left(120)
+'''
+nakresli sestiuhelnik
+'''
 
-def drawRow(): # nakresli radek a = pocet hexagonu do sirky pole
+def drawRow(): 
     for x in range(a):
         drawHex()
         penup()
         climbHexRight()
         pendown()
+'''
+nakresli radek a = pocet hexagonu do sirky pole
+'''
 
 #####################################################################
+
+
 # funkce na hru 
-def drawX(): # dovede zelvu na stred sestiuhelniku, nakresli krizek , vrati zelvu domu na start
+def drawX(): 
     left(180)
     forward(strana)
     pendown()
@@ -70,7 +86,11 @@ def drawX(): # dovede zelvu na stred sestiuhelniku, nakresli krizek , vrati zelv
     turtle.setheading(0)
     penup()
     turtle.goto(home_Base_position)
-def drawCircle(): # dovede zelvu na stred sestiuhelniku, nakresli kolecko, vrati zelvu domu na start
+'''
+dovede zelvu na stred sestiuhelniku, nakresli krizek , vrati zelvu domu na start
+'''
+
+def drawCircle(): 
     left(180)
     forward(strana)
     turtle.penup()
@@ -83,17 +103,30 @@ def drawCircle(): # dovede zelvu na stred sestiuhelniku, nakresli kolecko, vrati
     turtle.setheading(0)
     penup()
     turtle.goto(home_Base_position)
-def rowchooser(): # dovede zelvu na souradnice, pocet se urcuje v column, Osa X 
+'''
+dovede zelvu na stred sestiuhelniku, nakresli kolecko, vrati zelvu domu na start
+
+'''
+
+def rowchooser(): 
     left(120)
     forward(strana)
     right(60)
     forward(strana)
     right(60)
-def columnchooser(): # dovede zelvu na souradnice, pocet se urcuje v column, osa Y
-    forward(50)
+'''
+dovede zelvu na souradnice, pocet se urcuje v column, Osa X 
+'''
+
+def columnchooser(): 
+    forward(strana)
     left(60)
-    forward(50)
+    forward(strana)
     right(60)
+'''
+dovede zelvu na souradnice, pocet se urcuje v column, osa Y
+'''
+
 stopper = b # stopuje preRowPostiton 
 for w in range(b): # vytvori pole b = pocet sestiuhelniku do vysky 
     drawRow()
@@ -112,12 +145,12 @@ n=0 # variable na inniciaci cyklu a rozhodnuti kdo hraje,
 while n<(a*b):
     m=n/2
     if n//2==m: # zajisti kazde kolo stridani hracu jelikoz se na konci cyklu pricita n + 1 
-        print("hraje kolečko")
-    else:
         print("hraje křížek")
+    else:
+        print("hraje kolečko")
     row = int(input("vyber řádek (1 až {}) - ".format(a))) # input a zadavání sousřadnic
     column = int(input("vyber sloupec (1 až {}) - ".format(b)))
-    if row > b or row < 0 or column > a or column < 0: # zajisti ze player nemuze dat input mimo rozmezi hriste 
+    if row > a or row < 1 or column > b or column < 1: # zajisti ze player nemuze dat input mimo rozmezi hriste 
         print("souradnice jsou mimo hraci plochu, hraj znova")
         row = int(input("vyber řádek (1 až {}) - ".format(a)))
         column = int(input("vyber sloupec (1 až {}) - ".format(b)))   
@@ -127,8 +160,8 @@ while n<(a*b):
         for distance in range(row-1):
             rowchooser()
     if n//2 == m:  # k
-        drawCircle()
-    else:
         drawX()
+    else:
+        drawCircle()
     n += 1
 exitonclick()
