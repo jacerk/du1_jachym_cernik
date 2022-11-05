@@ -3,8 +3,8 @@ import turtle
 import random
 from turtle import forward,right,exitonclick, left, pendown, penup, speed, hideturtle, backward
 from math import sqrt 
-a = int(input("vyber pocet radku ")) # delka radku
-b = int(input("vyber pocet sloupcu ")) # vyska pole
+pocet_radku = int(input("vyber pocet radku ")) # delka radku
+pocet_sloupcu = int(input("vyber pocet sloupcu ")) # vyska pole
 
 strana = 50 # strana sestiuhelniku
 screen = turtle.Screen()
@@ -39,7 +39,7 @@ vrati zelvu na zacatek sloupce aby se stejna funkce znovu exekuovat
 
 def backToStart():
     left(240)
-    for y in range(a):
+    for y in range(pocet_radku):
         forward(strana)
         left(60)
         forward(strana)
@@ -58,7 +58,7 @@ nakresli sestiuhelnik
 '''
 
 def drawRow(): 
-    for x in range(a):
+    for x in range(pocet_radku):
         drawHex()
         penup()
         climbHexRight()
@@ -127,8 +127,8 @@ def columnchooser():
 dovede zelvu na souradnice, pocet se urcuje v column, osa Y
 '''
 
-stopper = b # stopuje preRowPostiton 
-for w in range(b): # vytvori pole b = pocet sestiuhelniku do vysky 
+stopper = pocet_sloupcu # stopuje preRowPostiton 
+for w in range(pocet_sloupcu): # vytvori pole b = pocet sestiuhelniku do vysky 
     drawRow()
     backToStart()
     if stopper > 1: # aby ke konci malovani zelva nesla mimo pole 
@@ -142,18 +142,18 @@ home_Base_position = turtle.position() # zaznamena startovni pozici pro zelvu, o
 speed(0)
 n=0 # variable na inniciaci cyklu a rozhodnuti kdo hraje, 
 # za kazdym tahem se pricte n +1, az se vyplni vsechni mozna policka tak se cykul zastavi 
-while n<(a*b):
+while n<(pocet_radku*pocet_sloupcu):
     m=n/2
     if n//2==m: # zajisti kazde kolo stridani hracu jelikoz se na konci cyklu pricita n + 1 
         print("hraje křížek")
     else:
         print("hraje kolečko")
-    row = int(input("vyber řádek (1 až {}) - ".format(a))) # input a zadavání sousřadnic
-    column = int(input("vyber sloupec (1 až {}) - ".format(b)))
-    if row > a or row < 1 or column > b or column < 1: # zajisti ze player nemuze dat input mimo rozmezi hriste 
+    row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku))) # input a zadavání sousřadnic
+    column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))
+    while row > pocet_radku or row < 1 or column > pocet_sloupcu or column < 1: # zajisti ze player nemuze dat input mimo rozmezi hriste 
         print("souradnice jsou mimo hraci plochu, hraj znova")
-        row = int(input("vyber řádek (1 až {}) - ".format(a)))
-        column = int(input("vyber sloupec (1 až {}) - ".format(b)))   
+        row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku)))
+        column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))   
     for distance in range(column): 
         columnchooser()
     if row != 1: # zajisti ze zelva nepujde v pripade rozhodnuti pro prvni radek a timpadem se vubec funkce pro lezeni na ose Y vubec neodehraje 
