@@ -144,11 +144,11 @@ penup()
 left(120) # nakoleni zelvu tak aby se s ni lepe operovalu pri hrani, smer na prvou stranu screenu 
 home_Base_position = turtle.position() # zaznamena startovni pozici pro zelvu, od ktere se bude startovat pri hre 
 speed(0)
-n=0 # variable na inniciaci cyklu a rozhodnuti kdo hraje, 
+pocitacka=0 # variable na inniciaci cyklu a rozhodnuti kdo hraje, 
 # za kazdym tahem se pricte n +1, az se vyplni vsechni mozna policka tak se cykul zastavi 
-while n<(pocet_radku*pocet_sloupcu):
-    m=n/2
-    if n//2==m: # zajisti kazde kolo stridani hracu jelikoz se na konci cyklu pricita n + 1 
+
+while pocitacka<(pocet_radku*pocet_sloupcu):
+    if pocitacka%2==0: # zajisti kazde kolo stridani hracu jelikoz se na konci cyklu pricita n + 1 
         print("hraje křížek")
     else:
         print("hraje kolečko")
@@ -171,9 +171,9 @@ while n<(pocet_radku*pocet_sloupcu):
     if row != 1: # zajisti ze zelva nepujde v pripade rozhodnuti pro prvni radek a timpadem se vubec funkce pro lezeni na ose Y vubec neodehraje 
         for distance in range(row-1):
             rowchooser()
-    if n//2 == m:  # k
+    if pocitacka%2==0:
         drawX()
     else:
         drawCircle()
-    n += 1
+    pocitacka += 1
 exitonclick()
