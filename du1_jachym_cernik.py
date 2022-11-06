@@ -19,6 +19,7 @@ turtle.setposition(100,-100) # posunuti trochu do praveho dolniho rohu aby bylo 
 pendown()
 speed(0)
 
+
 # funkce pro kresleni pole 
 def climbHexRight(): #  
     forward(strana)
@@ -71,6 +72,7 @@ nakresli radek a = pocet hexagonu do sirky pole
 '''
 
 #####################################################################
+
 
 # funkce na hru 
 def drawX(): 
