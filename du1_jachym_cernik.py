@@ -3,12 +3,12 @@ import turtle
 import random
 from turtle import forward,right,exitonclick, left, pendown, penup, speed, hideturtle, backward
 from math import sqrt 
-pocet_radku = int(input("vyber pocet radku ")) # delka radku
-pocet_sloupcu = int(input("vyber pocet sloupcu ")) # vyska pole
+pocet_radku = int(input("vyber pocet radku ")) 
+pocet_sloupcu = int(input("vyber pocet sloupcu ")) 
 while pocet_radku < 3 or pocet_sloupcu < 3: # kontroluje chybny pocet radku nebo sloupcu 
     print("3x3 je minimalni velikost, zadejte novou velikost pole")
-    pocet_radku = int(input("vyber pocet radku ")) # delka radku
-    pocet_sloupcu = int(input("vyber pocet sloupcu ")) # vyska pole
+    pocet_radku = int(input("vyber pocet radku ")) 
+    pocet_sloupcu = int(input("vyber pocet sloupcu "))
 
 strana = 50 # strana sestiuhelniku
 screen = turtle.Screen()
@@ -18,7 +18,6 @@ penup()
 turtle.setposition(100,-100) # posunuti trochu do praveho dolniho rohu aby bylo pole vice ve stredu screenu 
 pendown()
 speed(0)
-
 
 # funkce pro kresleni pole 
 def climbHexRight(): #  
@@ -41,9 +40,9 @@ def preRowPosition():
 vrati zelvu na zacatek sloupce aby se stejna funkce znovu exekuovat
 '''
 
-def backToStart():
+def backToStart(m):
     left(240)
-    for y in range(pocet_radku):
+    for y in range(m):
         forward(strana)
         left(60)
         forward(strana)
@@ -61,8 +60,8 @@ def drawHex():
 nakresli sestiuhelnik
 '''
 
-def drawRow(): 
-    for x in range(pocet_radku):
+def drawRow(m): 
+    for x in range(m):
         drawHex()
         penup()
         climbHexRight()
@@ -72,7 +71,6 @@ nakresli radek a = pocet hexagonu do sirky pole
 '''
 
 #####################################################################
-
 
 # funkce na hru 
 def drawX(): 
@@ -133,8 +131,8 @@ dovede zelvu na souradnice, pocet se urcuje v column, osa Y
 
 stopper = pocet_sloupcu # stopuje preRowPostiton 
 for w in range(pocet_sloupcu): # vytvori pole b = pocet sestiuhelniku do vysky 
-    drawRow()
-    backToStart()
+    drawRow(pocet_radku)
+    backToStart(pocet_radku)
     if stopper > 1: # aby ke konci malovani zelva nesla mimo pole 
         preRowPosition()
     stopper -=1 
