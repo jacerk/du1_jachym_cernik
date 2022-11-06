@@ -5,6 +5,10 @@ from turtle import forward,right,exitonclick, left, pendown, penup, speed, hidet
 from math import sqrt 
 pocet_radku = int(input("vyber pocet radku ")) # delka radku
 pocet_sloupcu = int(input("vyber pocet sloupcu ")) # vyska pole
+while pocet_radku < 3 or pocet_sloupcu < 3: # kontroluje chybny pocet radku nebo sloupcu 
+    print("3x3 je minimalni velikost, zadejte novou velikost pole")
+    pocet_radku = int(input("vyber pocet radku ")) # delka radku
+    pocet_sloupcu = int(input("vyber pocet sloupcu ")) # vyska pole
 
 strana = 50 # strana sestiuhelniku
 screen = turtle.Screen()
@@ -150,10 +154,18 @@ while n<(pocet_radku*pocet_sloupcu):
         print("hraje kolečko")
     row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku))) # input a zadavání sousřadnic
     column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))
+    while row < 1 or column < 1: # kontroluje ze neni zadana chybna souradnice 
+        print("souradnice nemohou byt mensi nez jedna, zvolte nove souradnice")
+        row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku)))
+        column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))
     while row > pocet_radku or row < 1 or column > pocet_sloupcu or column < 1: # zajisti ze player nemuze dat input mimo rozmezi hriste 
         print("souradnice jsou mimo hraci plochu, hraj znova")
         row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku)))
-        column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))   
+        column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))
+        while row < 1 or column < 1:
+            print("souradnice nemohou byt mensi nez jedna, zvolte nove souradnice")
+            row = int(input("vyber řádek (1 až {}) - ".format(pocet_radku)))
+            column = int(input("vyber sloupec (1 až {}) - ".format(pocet_sloupcu)))
     for distance in range(column): 
         columnchooser()
     if row != 1: # zajisti ze zelva nepujde v pripade rozhodnuti pro prvni radek a timpadem se vubec funkce pro lezeni na ose Y vubec neodehraje 
